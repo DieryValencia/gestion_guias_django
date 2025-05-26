@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Consultar Guías{% endblock %}
+{% block content %}
+<h2>Guías Disponibles</h2>
+<ul class="list-group">
+  {% for guia in guias %}
+    <li class="list-group-item">
+      <strong>{{ guia.title }}</strong> (Tema: {{ guia.tema }})<br>
+      Recursos: {{ guia.resources|default:'(sin recursos asignados)' }}
+    </li>
+  {% empty %}
+    <li class="list-group-item">No hay guías disponibles.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

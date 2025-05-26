@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Revisión de Guías{% endblock %}
+{% block content %}
+<h2>Revisión de Guías</h2>
+<table class="table">
+  <thead><tr><th>ID</th><th>Título</th><th>Tema</th><th>Recursos</th><th>Acción</th></tr></thead>
+  <tbody>
+  {% for guia in guias %}
+  <tr>
+    <td>{{ guia.id }}</td>
+    <td>{{ guia.title }}</td>
+    <td>{{ guia.tema }}</td>
+    <td>{{ guia.resources|default:'(ninguno)' }}</td>
+    <td>
+      <form method="post" class="d-flex">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ guia.id }}">
+        <input type="text" name="resources" class="form-control me-2">
+        <button type="submit" class="btn btn-success">Asignar</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
