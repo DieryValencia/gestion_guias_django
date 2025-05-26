@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Mis Guías{% endblock %}
+{% block content %}
+<h2>Listado de Guías</h2>
+<a href="{% url 'guia:guia_create' %}" class="btn btn-primary mb-2">Nueva Guía</a>
+<table class="table">
+  <thead><tr><th>ID</th><th>Programa</th><th>Semana</th><th>Estado</th><th>Acciones</th></tr></thead>
+  <tbody>
+    {% for guia in guias %}
+    <tr>
+      <td>{{ guia.id }}</td>
+      <td>{{ guia.programa }}</td>
+      <td>{{ guia.semana }}</td>
+      <td>{{ guia.estado }}</td>
+      <td>
+        <a href="{% url 'guia:guia_update' guia.id %}" class="btn btn-sm btn-warning">Editar</a>
+        <a href="{% url 'guia:guia_delete' guia.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
